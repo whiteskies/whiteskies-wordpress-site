@@ -19,6 +19,6 @@ docker-compose up --build
 - If on windows:
 ```sh
 docker-compose down -v
-$env:HOST_IP ="192.168.0.24";
+$env:HOST_IP ="192.168.0.15";
 docker-compose up --build
 ```
