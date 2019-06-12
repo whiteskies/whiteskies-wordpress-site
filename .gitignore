@@ -16,6 +16,8 @@ wp/wp-content/themes/twentynineteen
 wp/wp-content/themes/twentyseventeen
 wp/wp-content/themes/twentysixteen
 wp/wp-content/themes/index.php
+wp/wp-content/uploads
+wp/wp-content/debug.log
 wp/.htaccess
 wp/index.php
 wp/license.txt
