@@ -1,0 +1,41 @@
+version: '2'
+services:
+  wordpress:
+    build: . # https://hub.docker.com/_/wordpress/
+    ports:
+      - 127.0.0.1:80:80 # change ip if required
+    volumes:
+    - ./wp:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: database
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      XDEBUG_CONFIG: remote_host=${HOST_IP}
+    depends_on:
+      - database
+    networks:
+      - wordpress-network
+  database:
+    image: mysql:5.6 
+    ports:
+      - 127.0.0.1:3306:3306 # change ip if required
+    command: [
+        '--default_authentication_plugin=mysql_native_password',
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_unicode_ci'
+    ]
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    networks:
+      - wordpress-network
+    volumes:
+      - ./my-datavolume:/var/lib/mysql
+volumes:
+  my-datavolume:
+networks:
+  wordpress-network:
+      driver: bridge
